@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BottomNav from "@/components/BottomNav";
+import RulesModal from "@/components/RulesModal";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -39,6 +40,7 @@ export default function RootLayout({
         <main className="flex flex-1 flex-col pb-24 md:pb-0">{children}</main>
         <Footer />
         <BottomNav />
+        <RulesModal />
       </body>
     </html>
   );

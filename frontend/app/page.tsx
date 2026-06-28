@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import UtilityMenu from "@/components/UtilityMenu";
 
 type Mode = {
   emoji: string;
@@ -42,32 +43,38 @@ function ModeCard({
   facingGloves?: boolean;
 }) {
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-neutral-100 bg-white p-6 text-center shadow-sm">
-      <div className="flex items-center justify-center gap-3">
+    <div className="flex h-full flex-col rounded-2xl border border-neutral-100 bg-white p-4 text-center shadow-sm sm:p-6">
+      <div className="flex items-center justify-center gap-2 sm:gap-3">
         {facingGloves ? (
           <>
             {/* left glove mirrored so the pair faces each other */}
-            <span className="text-2xl -scale-x-100" aria-hidden>
+            <span className="text-lg -scale-x-100 sm:text-2xl" aria-hidden>
               🥊
             </span>
-            <h3 className="text-xl font-bold text-brand">{mode.name}</h3>
-            <span className="text-2xl" aria-hidden>
+            <h3 className="text-base font-bold text-brand sm:text-xl">
+              {mode.name}
+            </h3>
+            <span className="text-lg sm:text-2xl" aria-hidden>
               🥊
             </span>
           </>
         ) : (
           <>
-            <span className="text-2xl" aria-hidden>
+            <span className="text-lg sm:text-2xl" aria-hidden>
               {mode.emoji}
             </span>
-            <h3 className="text-xl font-bold text-brand">{mode.name}</h3>
+            <h3 className="text-base font-bold text-brand sm:text-xl">
+              {mode.name}
+            </h3>
           </>
         )}
       </div>
-      <p className="mt-3 text-neutral-500">{mode.description}</p>
+      <p className="mt-1.5 text-xs leading-snug text-neutral-500 sm:mt-3 sm:text-base">
+        {mode.description}
+      </p>
       <Link
         href={mode.href}
-        className="mt-6 rounded-xl bg-brand px-6 py-3 font-bold text-white transition hover:bg-brand-dark focus:outline-none focus-visible:ring-4 focus-visible:ring-red-300"
+        className="mt-3 rounded-xl bg-brand px-4 py-2.5 text-sm font-bold text-white transition hover:bg-brand-dark focus:outline-none focus-visible:ring-4 focus-visible:ring-red-300 sm:mt-6 sm:px-6 sm:py-3 sm:text-base"
       >
         {mode.cta}
       </Link>
@@ -77,41 +84,47 @@ function ModeCard({
 
 export default function Home() {
   return (
-    <section className="mx-auto w-full max-w-3xl px-5 py-8 text-center sm:px-6 sm:py-10">
+    <section className="relative mx-auto flex w-full max-w-3xl flex-1 flex-col px-4 pt-1 pb-4 text-center sm:px-6 sm:pt-6 sm:pb-10">
+      {/* Profile / dark-mode / menu cluster — desktop hero, top-right */}
+      <div className="absolute right-4 top-4 hidden md:block">
+        <UtilityMenu />
+      </div>
+
       {/* Brand + headline */}
+      {/* Logo only on desktop — on mobile the top-bar logo is enough */}
       <Image
         src="/logo.png"
         alt="30-0 logo"
         width={96}
         height={96}
         priority
-        className="mx-auto h-16 w-16 drop-shadow-md sm:h-20 sm:w-20"
+        className="mx-auto hidden h-16 w-16 drop-shadow-md sm:block sm:h-20 sm:w-20"
       />
-      <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl">
+      <h1 className="mt-1 text-2xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl">
         Can you go <span className="text-brand">30-0</span>?
       </h1>
-      <h2 className="mt-1 text-2xl font-extrabold tracking-tight text-neutral-900 sm:text-3xl">
+      <h2 className="mt-0.5 text-xl font-extrabold tracking-tight text-neutral-900 sm:mt-1 sm:text-3xl">
         Choose Your Mode
       </h2>
-      <p className="mt-3 text-base text-neutral-500 sm:text-lg">
+      <p className="mt-1.5 text-sm text-neutral-500 sm:mt-3 sm:text-lg">
         How do you want to build your fighter?
       </p>
 
-      {/* Mode cards */}
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+      {/* Mode cards — 2-up on every screen, 1v1 full width below */}
+      <div className="mt-4 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4">
         {modes.map((mode) => (
           <ModeCard key={mode.name} mode={mode} />
         ))}
       </div>
-      <div className="mt-4">
+      <div className="mt-3 sm:mt-4">
         <ModeCard mode={versus} facingGloves />
       </div>
 
       {/* New mode pill */}
-      <div className="mt-6 flex justify-center">
+      <div className="mt-4 flex justify-center sm:mt-6">
         <Link
           href="/play/title-run"
-          className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-5 py-3 text-sm font-semibold text-neutral-900 shadow-sm transition hover:border-brand"
+          className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2.5 text-xs font-semibold text-neutral-900 shadow-sm transition hover:border-brand sm:px-5 sm:py-3 sm:text-sm"
         >
           <span aria-hidden>🥊</span>
           New: <span className="font-bold text-brand">TITLE RUN</span>

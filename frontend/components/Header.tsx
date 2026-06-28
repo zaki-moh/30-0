@@ -50,7 +50,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-neutral-100 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-40 w-full bg-transparent md:border-b md:border-neutral-100 md:bg-white/90 md:backdrop-blur">
       {/* ===== Desktop top nav ===== */}
       <div className="mx-auto hidden max-w-6xl items-center justify-between gap-4 px-6 py-3 md:flex">
         <Link href="/" className="flex items-center gap-2">
@@ -105,10 +105,10 @@ export default function Header() {
           <Image
             src="/logo.png"
             alt="30-0 logo"
-            width={40}
-            height={40}
+            width={72}
+            height={72}
             priority
-            className="h-9 w-9 drop-shadow-sm"
+            className="h-16 w-16 drop-shadow-sm"
           />
         </Link>
         <div className="flex items-center justify-self-end gap-1.5">
