@@ -43,7 +43,7 @@ function ModeCard({
   facingGloves?: boolean;
 }) {
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-neutral-100 bg-white p-4 text-center shadow-sm sm:p-6">
+    <div className="flex h-full flex-col rounded-2xl border border-neutral-100 bg-white p-4 text-center shadow-sm sm:p-6 dark:border-neutral-800 dark:bg-neutral-900">
       <div className="flex items-center justify-center gap-2 sm:gap-3">
         {facingGloves ? (
           <>
@@ -69,7 +69,7 @@ function ModeCard({
           </>
         )}
       </div>
-      <p className="mt-1.5 text-xs leading-snug text-neutral-500 sm:mt-3 sm:text-base">
+      <p className="mt-1.5 text-xs leading-snug text-neutral-500 sm:mt-3 sm:text-base dark:text-neutral-400">
         {mode.description}
       </p>
       <Link
@@ -100,13 +100,13 @@ export default function Home() {
         priority
         className="mx-auto hidden h-16 w-16 drop-shadow-md sm:block sm:h-20 sm:w-20"
       />
-      <h1 className="mt-1 text-2xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl">
+      <h1 className="mt-1 text-2xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl dark:text-white">
         Can you go <span className="text-brand">30-0</span>?
       </h1>
-      <h2 className="mt-0.5 text-xl font-extrabold tracking-tight text-neutral-900 sm:mt-1 sm:text-3xl">
+      <h2 className="mt-0.5 text-xl font-extrabold tracking-tight text-neutral-900 sm:mt-1 sm:text-3xl dark:text-white">
         Choose Your Mode
       </h2>
-      <p className="mt-1.5 text-sm text-neutral-500 sm:mt-3 sm:text-lg">
+      <p className="mt-1.5 text-sm text-neutral-500 sm:mt-3 sm:text-lg dark:text-neutral-400">
         How do you want to build your fighter?
       </p>
 
@@ -124,7 +124,7 @@ export default function Home() {
       <div className="mt-4 flex justify-center sm:mt-6">
         <Link
           href="/play/title-run"
-          className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2.5 text-xs font-semibold text-neutral-900 shadow-sm transition hover:border-brand sm:px-5 sm:py-3 sm:text-sm"
+          className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2.5 text-xs font-semibold text-neutral-900 shadow-sm transition hover:border-brand sm:px-5 sm:py-3 sm:text-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-white"
         >
           <span aria-hidden>🥊</span>
           New: <span className="font-bold text-brand">TITLE RUN</span>

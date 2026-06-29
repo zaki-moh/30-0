@@ -5,11 +5,11 @@ import { useEffect, useState, useSyncExternalStore } from "react";
 const STORAGE_KEY = "hideRulesModal";
 
 const traits = [
-  { label: "Striking", color: "text-red-600", icon: "🥊" },
-  { label: "Grappling", color: "text-blue-600", icon: "🤼" },
-  { label: "Fight IQ", color: "text-purple-600", icon: "🧠" },
-  { label: "Cardio", color: "text-green-600", icon: "❤️" },
-  { label: "Durability", color: "text-orange-500", icon: "🛡️" },
+  { label: "Striking", color: "text-red-600 dark:text-red-400", icon: "🥊" },
+  { label: "Grappling", color: "text-blue-600 dark:text-blue-400", icon: "🤼" },
+  { label: "Fight IQ", color: "text-purple-600 dark:text-purple-400", icon: "🧠" },
+  { label: "Cardio", color: "text-green-600 dark:text-green-400", icon: "❤️" },
+  { label: "Durability", color: "text-orange-500 dark:text-orange-400", icon: "🛡️" },
 ];
 
 // Read the "already dismissed" flag from localStorage in a hydration-safe way.
@@ -66,25 +66,25 @@ export default function RulesModal() {
       aria-modal="true"
       aria-labelledby="rules-title"
     >
-      <div className="flex max-h-[85dvh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-white shadow-xl">
+      <div className="flex max-h-[85dvh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-white shadow-xl dark:bg-neutral-900">
         {/* Scrollable content */}
         <div className="overflow-y-auto p-6 sm:p-8">
           <h2
             id="rules-title"
-            className="text-3xl font-extrabold tracking-tight text-neutral-900"
+            className="text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-white"
           >
             How to Play <span className="text-brand">30-0</span>
           </h2>
-          <p className="mt-1 text-neutral-500">
+          <p className="mt-1 text-neutral-500 dark:text-neutral-400">
             Build the ultimate fighter and see if you can go 30-0!
           </p>
 
           {/* The Draft */}
           <section className="mt-6">
-            <h3 className="text-sm font-bold uppercase tracking-wide text-neutral-900">
+            <h3 className="text-sm font-bold uppercase tracking-wide text-neutral-900 dark:text-white">
               The Draft
             </h3>
-            <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm text-neutral-700">
+            <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm text-neutral-700 dark:text-neutral-300">
               <li>Each round, a random fighter will be revealed</li>
               <li>
                 Select <span className="font-bold text-brand">ONE</span>{" "}
@@ -96,7 +96,7 @@ export default function RulesModal() {
 
           {/* The 5 Championship Traits */}
           <section className="mt-6">
-            <h3 className="text-sm font-bold uppercase tracking-wide text-neutral-900">
+            <h3 className="text-sm font-bold uppercase tracking-wide text-neutral-900 dark:text-white">
               The 5 Championship Traits
             </h3>
             <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
@@ -114,10 +114,10 @@ export default function RulesModal() {
 
           {/* Important */}
           <section className="mt-6">
-            <h3 className="text-sm font-bold uppercase tracking-wide text-neutral-900">
+            <h3 className="text-sm font-bold uppercase tracking-wide text-neutral-900 dark:text-white">
               Important
             </h3>
-            <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm text-neutral-700">
+            <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm text-neutral-700 dark:text-neutral-300">
               <li>No rerolls</li>
               <li>No changing picks</li>
               <li>Every decision is permanent</li>
@@ -126,10 +126,10 @@ export default function RulesModal() {
 
           {/* Fight IQ Simulation */}
           <section className="mt-6">
-            <h3 className="text-sm font-bold uppercase tracking-wide text-neutral-900">
+            <h3 className="text-sm font-bold uppercase tracking-wide text-neutral-900 dark:text-white">
               Fight IQ™ Simulation
             </h3>
-            <p className="mt-2 text-sm text-neutral-600">
+            <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
               Fight IQ™ evaluates far more than overall ratings. Every matchup
               considers styles, decision-making, conditioning, durability, and
               more to create a unique career every time.
@@ -138,7 +138,7 @@ export default function RulesModal() {
         </div>
 
         {/* Footer buttons (always visible) */}
-        <div className="flex flex-col gap-2 border-t border-neutral-100 p-4 sm:px-8">
+        <div className="flex flex-col gap-2 border-t border-neutral-100 p-4 sm:px-8 dark:border-neutral-800">
           <button
             type="button"
             onClick={playGame}
@@ -149,7 +149,7 @@ export default function RulesModal() {
           <button
             type="button"
             onClick={dontShowAgain}
-            className="rounded-xl px-6 py-2.5 text-sm font-semibold text-neutral-500 transition hover:text-neutral-900"
+            className="rounded-xl px-6 py-2.5 text-sm font-semibold text-neutral-500 transition hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
           >
             Don&apos;t show this again
           </button>

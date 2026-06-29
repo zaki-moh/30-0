@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useTheme } from "@/components/useTheme";
 
 const navLinks = [
   { label: "Play", href: "/" },
@@ -13,7 +14,16 @@ const navLinks = [
 ];
 
 const iconBtn =
-  "rounded-lg border border-neutral-200 bg-white p-2 text-neutral-700 transition hover:text-brand";
+  "rounded-lg border border-neutral-200 bg-white p-2 text-neutral-700 transition hover:text-brand dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300";
+
+function SunIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+    </svg>
+  );
+}
 
 function ProfileIcon() {
   return (
@@ -45,6 +55,7 @@ function MenuIcon() {
 export default function UtilityMenu() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <div className="relative">
@@ -52,8 +63,13 @@ export default function UtilityMenu() {
         <Link href="/profile" aria-label="Profile" className={iconBtn}>
           <ProfileIcon />
         </Link>
-        <button type="button" aria-label="Toggle dark mode" className={iconBtn}>
-          <MoonIcon />
+        <button
+          type="button"
+          aria-label="Toggle dark mode"
+          onClick={toggleTheme}
+          className={iconBtn}
+        >
+          {theme === "dark" ? <SunIcon /> : <MoonIcon />}
         </button>
         <button
           type="button"
@@ -67,7 +83,7 @@ export default function UtilityMenu() {
       </div>
 
       {open && (
-        <div className="absolute right-0 z-50 mt-2 w-48 rounded-xl border border-neutral-100 bg-white p-2 text-left shadow-lg">
+        <div className="absolute right-0 z-50 mt-2 w-48 rounded-xl border border-neutral-100 bg-white p-2 text-left shadow-lg dark:border-neutral-800 dark:bg-neutral-900">
           <nav className="flex flex-col">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -78,8 +94,8 @@ export default function UtilityMenu() {
                   onClick={() => setOpen(false)}
                   className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${
                     isActive
-                      ? "bg-neutral-100 text-brand"
-                      : "text-neutral-700 hover:bg-neutral-50"
+                      ? "bg-neutral-100 text-brand dark:bg-neutral-800"
+                      : "text-neutral-700 hover:bg-neutral-50 dark:text-neutral-300 dark:hover:bg-neutral-800"
                   }`}
                 >
                   {link.label}

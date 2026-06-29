@@ -33,8 +33,17 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${poppins.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="font-sans flex min-h-[100dvh] flex-col bg-white text-neutral-900">
+      <head>
+        {/* Apply saved theme before first paint to avoid a flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(localStorage.getItem("theme")==="dark")document.documentElement.classList.add("dark")}catch(e){}})()`,
+          }}
+        />
+      </head>
+      <body className="font-sans flex min-h-[100dvh] flex-col bg-background text-foreground">
         <Header />
         {/* pb on mobile so content clears the fixed bottom tab bar */}
         <main className="flex flex-1 flex-col pb-24 md:pb-0">{children}</main>

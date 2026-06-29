@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useTheme } from "@/components/useTheme";
 
 const navLinks = [
   { label: "Play", href: "/" },
@@ -41,16 +42,26 @@ function MenuIcon() {
   );
 }
 
+function SunIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+    </svg>
+  );
+}
+
 function iconBtn() {
-  return "rounded-lg border border-neutral-200 p-2 text-neutral-700 transition hover:text-brand";
+  return "rounded-lg border border-neutral-200 p-2 text-neutral-700 transition hover:text-brand dark:border-neutral-700 dark:text-neutral-300";
 }
 
 export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-transparent md:border-b md:border-neutral-100 md:bg-white/90 md:backdrop-blur">
+    <header className="sticky top-0 z-40 w-full bg-transparent md:border-b md:border-neutral-100 md:bg-white/90 md:backdrop-blur dark:md:border-neutral-800 dark:md:bg-neutral-950/90">
       {/* ===== Desktop top nav ===== */}
       <div className="mx-auto hidden max-w-6xl items-center justify-between gap-4 px-6 py-3 md:flex">
         <Link href="/" className="flex items-center gap-2">
@@ -62,7 +73,7 @@ export default function Header() {
             priority
             className="h-9 w-9 drop-shadow-sm"
           />
-          <span className="text-lg font-extrabold tracking-tight text-neutral-900">
+          <span className="text-lg font-extrabold tracking-tight text-neutral-900 dark:text-white">
             30<span className="text-brand">-0</span>
           </span>
         </Link>
@@ -78,7 +89,7 @@ export default function Header() {
                   className={
                     isActive
                       ? "text-brand"
-                      : "text-neutral-500 transition hover:text-brand"
+                      : "text-neutral-500 transition hover:text-brand dark:text-neutral-400"
                   }
                 >
                   {link.label}
@@ -112,8 +123,13 @@ export default function Header() {
           />
         </Link>
         <div className="flex items-center justify-self-end gap-1.5">
-          <button type="button" aria-label="Toggle dark mode" className={iconBtn()}>
-            <MoonIcon />
+          <button
+            type="button"
+            aria-label="Toggle dark mode"
+            onClick={toggleTheme}
+            className={iconBtn()}
+          >
+            {theme === "dark" ? <SunIcon /> : <MoonIcon />}
           </button>
           <button type="button" aria-label="Change language" className={iconBtn()}>
             <GlobeIcon />
@@ -132,7 +148,7 @@ export default function Header() {
 
       {/* Mobile dropdown (toggled by hamburger) */}
       {menuOpen && (
-        <div className="border-t border-neutral-100 px-4 py-3 md:hidden">
+        <div className="border-t border-neutral-100 px-4 py-3 md:hidden dark:border-neutral-800">
           <Link
             href="/signup"
             onClick={() => setMenuOpen(false)}

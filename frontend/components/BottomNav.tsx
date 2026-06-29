@@ -70,7 +70,7 @@ export default function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-neutral-100 bg-white pb-[env(safe-area-inset-bottom)] md:hidden">
+    <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-neutral-100 bg-white pb-[env(safe-area-inset-bottom)] md:hidden dark:border-neutral-800 dark:bg-neutral-950">
       <ul className="flex items-stretch justify-around px-1.5 py-1.5">
         {tabs.map(({ label, href, Icon }) => {
           const isActive = pathname === href;
@@ -79,7 +79,7 @@ export default function BottomNav() {
               <Link
                 href={href}
                 className={`flex flex-col items-center gap-1 rounded-2xl py-2 text-[11px] font-semibold leading-none transition ${
-                  isActive ? "bg-brand text-white" : "text-neutral-500"
+                  isActive ? "bg-brand text-white" : "text-neutral-500 dark:text-neutral-400"
                 }`}
               >
                 <Icon className="h-5 w-5" />
